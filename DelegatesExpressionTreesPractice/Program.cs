@@ -8,31 +8,21 @@ namespace DelegatesExpressionTreesPractice
 {
     class Program
     {
-        delegate void GetMessage();
-
         static void Main(string[] args)
         {
-            if (DateTime.Now.Hour < 12)
-            {
-                Show_Message(GoodMorning);
-            }
-            else
-            {
-                Show_Message(GoodEvening);
-            }
+            // создаем банковский счет
+            Account account = new Account(200);
+            // Добавляем в делегат ссылку на метод Show_Message
+            // а сам делегат передается в качестве параметра метода RegisterHandler
+            account.RegisterHandler(new Account.AccountStateHandler(Show_Message));
+            // Два раза подряд пытаемся снять деньги
+            account.Withdraw(100);
+            account.Withdraw(150);
             Console.ReadLine();
         }
-        private static void Show_Message(GetMessage _del)
+        private static void Show_Message(String message)
         {
-            _del.Invoke();
-        }
-        private static void GoodMorning()
-        {
-            Console.WriteLine("Good Morning");
-        }
-        private static void GoodEvening()
-        {
-            Console.WriteLine("Good Evening");
+            Console.WriteLine(message);
         }
     }
 }
