@@ -14,17 +14,14 @@ namespace DelegatesExpressionTreesPractice
         AccountStateHandler _ourDelegate;
 
         // Регистрируем делегат
-        // Регистрируем делегат
         public void RegisterHandler(AccountStateHandler del)
         {
-            Delegate mainDel = System.Delegate.Combine(del, _ourDelegate);
-            _ourDelegate = mainDel as AccountStateHandler;
+            _ourDelegate += del; // добавляем делегат
         }
         // Отмена регистрации делегата
         public void UnregisterHandler(AccountStateHandler del)
         {
-            Delegate mainDel = System.Delegate.Remove(_ourDelegate, del);
-            _ourDelegate = mainDel as AccountStateHandler;
+            _ourDelegate -= del; // удаляем делегат
         }
 
         int _sumVar; // Переменная для хранения суммы
