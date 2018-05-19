@@ -11,7 +11,7 @@ namespace DelegatesExpressionTreesPractice
         // Объявляем делегат
         public delegate void AccountStateHandler(string message);
         // Создаем переменную делегата
-        AccountStateHandler _ourDelegate;
+        private AccountStateHandler _ourDelegate = delegate { Console.WriteLine("анонимный метод"); };
 
         // Регистрируем делегат
         public void RegisterHandler(AccountStateHandler del)

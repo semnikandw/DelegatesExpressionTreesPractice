@@ -14,10 +14,13 @@ namespace DelegatesExpressionTreesPractice
             Account account = new Account(200);
             // Добавляем в делегат ссылку на метод Show_Message
             // а сам делегат передается в качестве параметра метода RegisterHandler
-            account.RegisterHandler(new Account.AccountStateHandler(Show_Message));
+          
+            //account.RegisterHandler(new Account.AccountStateHandler(Show_Message));
+            //account.RegisterHandler(new Account.AccountStateHandler(Show_Message));
             // Два раза подряд пытаемся снять деньги
             account.Withdraw(100);
             account.Withdraw(150);
+            //account.hand;
             Console.ReadLine();
         }
         private static void Show_Message(String message)
