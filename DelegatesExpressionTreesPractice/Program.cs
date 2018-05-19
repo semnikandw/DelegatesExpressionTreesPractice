@@ -8,29 +8,28 @@ namespace DelegatesExpressionTreesPractice
 {
     class Program
     {
-        delegate void GetMessage(); // 1. Объявляем делегат
+        delegate int Operation(int x, int y);
 
         static void Main(string[] args)
         {
-            GetMessage del; // 2. Создаем переменную делегата
-            if (DateTime.Now.Hour < 12)
-            {
-                del = GoodMorning; // 3. Присваиваем этой переменной адрес метода
-            }
-            else
-            {
-                del = GoodEvening;// Ключевой момент мы присваиваем переменной делегата функцию определенную ниже.
-            }
-            del.Invoke(); // 4. Вызываем метод
-            Console.ReadLine();
+            // присваивание адреса метода через контруктор
+            Operation del = new Operation(Add); // делегат указывает на метод Add
+            int result = del.Invoke(4, 5);
+            Console.WriteLine(result);
+
+            del = Multiply; // теперь делегат указывает на метод Multiply, присваивание such us old
+            result = del.Invoke(4, 5);
+            Console.WriteLine(result);
+
+            Console.Read();
         }
-        private static void GoodMorning()
+        private static int Add(int x, int y)
         {
-            Console.WriteLine("Good Morning");
+            return x + y;
         }
-        private static void GoodEvening()
+        private static int Multiply(int x, int y)
         {
-            Console.WriteLine("Good Evening");
+            return x * y;
         }
     }
 }
