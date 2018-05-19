@@ -20,7 +20,7 @@ namespace DelegatesExpressionTreesPractice
             // Два раза подряд пытаемся снять деньги
             account.Withdraw(100);
             account.Withdraw(150);
-            //account.hand;
+            //account.hand;asdasd
             Console.ReadLine();
         }
         private static void Show_Message(String message)
