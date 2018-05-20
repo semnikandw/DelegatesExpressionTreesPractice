@@ -1,36 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DelegatesExpressionTreesPractice
+namespace ConsoleApplication1
 {
+    // Создадим несколько делегатов имитирующих 
+    // простейшую форму регистрации
+    delegate int /* int тип возвращаемого значения функции-делегата */ LengthLogin(string s); // определили делегат
+    delegate bool BoolComparingPassword(string s1, string s2);
+
     class Program
     {
-        delegate void GetMessage(); // 1. Объявляем делегат
+        private static void SetLogin()
+        {
+            Console.Write("Введите логин: ");
+            string login = Console.ReadLine();
 
-        static void Main(string[] args)
-        {
-            GetMessage del; // 2. Создаем переменную делегата
-            if (DateTime.Now.Hour < 12)
+            // Используем лямбда-выражение
+            LengthLogin lengthLoginDelegate = (s) => s.Length; // под делегат задали лямда
+
+            int lengthLogin = lengthLoginDelegate(login); //успользуем лябду
+            if (lengthLogin > 25)
             {
-                del = GoodMorning; // 3. Присваиваем этой переменной адрес метода
+                Console.WriteLine("Слишком длинное имя\n");
+
+                // Рекурсия на этот же метод, чтобы ввести заново логин
+                SetLogin();
             }
+        }
+
+        static void Main()
+        {
+            SetLogin();
+
+            Console.Write("Введите пароль: ");
+            string password1 = Console.ReadLine();
+            Console.Write("Повторите пароль: ");
+            string password2 = Console.ReadLine();
+
+            // Используем лямбда выражение
+            BoolComparingPassword bp/*delegat-object*/ = (s1, s2) /* in params to lamba*/=> s1 == s2;/* lamba-function*/
+
+            if (bp(password1, password2))
+                Console.WriteLine("Регистрация удалась!");
             else
-            {
-                del = GoodEvening;// Ключевой момент мы присваиваем переменной делегата функцию определенную ниже.
-            }
-            del.Invoke(); // 4. Вызываем метод
+                Console.WriteLine("Регистрация провалилась. Пароли не совпадают");
+
             Console.ReadLine();
-        }
-        private static void GoodMorning()
-        {
-            Console.WriteLine("Good Morning");
-        }
-        private static void GoodEvening()
-        {
-            Console.WriteLine("Good Evening");
         }
     }
 }
