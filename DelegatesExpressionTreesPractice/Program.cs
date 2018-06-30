@@ -4,6 +4,7 @@ namespace ConsoleApplication1
 {
     // Создадим несколько делегатов имитирующих 
     // простейшую форму регистрации
+    //
     delegate int /* int тип возвращаемого значения функции-делегата */ LengthLogin(string s); // определили делегат
     delegate bool BoolComparingPassword(string s1, string s2);
 
