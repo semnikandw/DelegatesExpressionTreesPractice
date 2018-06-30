@@ -4,12 +4,16 @@ namespace ConsoleApplication1
 {
     // Создадим несколько делегатов имитирующих 
     // простейшую форму регистрации
-    //
+    /// <summary>
+    /// /asdas
+    /// </summary>
+    /// <param name="s"></param>/**/
+    /// <returns></returns>\\///**/
     delegate int /* int тип возвращаемого значения функции-делегата */ LengthLogin(string s); // определили делегат
     delegate bool BoolComparingPassword(string s1, string s2);
 
     class Program
-    {
+    {/*\*/
         private static void SetLogin()
         {
             Console.Write("Введите логин: ");
